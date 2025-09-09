@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"pages\\\\_app.js -> ../components/ClientProviders\":{\"id\":\"pages\\\\_app.js -> ../components/ClientProviders\",\"files\":[\"static/chunks/components_ClientProviders_js.js\"]}}"

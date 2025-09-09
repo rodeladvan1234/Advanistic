@@ -7,6 +7,7 @@ export default function NewsletterSignup({ compact }) {
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
 
   const submit = async (e) => {
     e && e.preventDefault();
@@ -19,21 +20,32 @@ export default function NewsletterSignup({ compact }) {
         body: JSON.stringify({ email, name })
       });
       const data = await res.json();
-      if (res.ok && data.success) setMsg('Subscribed — check your inbox');
-      else setMsg(data.message || 'Subscribe failed');
+      if (res.ok && data.success) {
+        setMsg('Subscribed — check your inbox');
+        setSubscribed(true);
+      } else setMsg(data.message || 'Subscribe failed');
     } catch (err) {
       setMsg('Server error');
     }
     setLoading(false);
   };
-
   if (compact) {
+    if (subscribed) return <div style={{ color: '#00af66' }}>Subscribed</div>;
     return (
       <form onSubmit={submit} style={{ display: 'flex', gap: '.5rem', alignItems: 'center' }}>
         <input type="email" placeholder="Your email" value={email} onChange={e => setEmail(e.target.value)} required style={{ padding: '.5rem' }} />
-        <button type="submit" disabled={loading} style={{ padding: '.5rem', background: '#0070f3', color: '#fff', border: 'none' }}>{loading ? '...' : 'Subscribe'}</button>
-        {msg && <div style={{ color: 'green' }}>{msg}</div>}
+        <button type="submit" disabled={loading || subscribed} style={{ padding: '.5rem', background: '#00af66', color: '#fff', border: 'none' }}>{loading ? '...' : (subscribed ? 'Subscribed' : 'Subscribe')}</button>
+        {msg && <div style={{ color: '#00af66' }}>{msg}</div>}
       </form>
+    );
+  }
+
+  if (subscribed) {
+    // show subscribed message briefly; component will unmount after delay
+    return (
+      <div style={{ border: '1px solid #eee', padding: '1rem', borderRadius: 6 }}>
+        <div style={{ color: '#00af66' }}>Subscribed</div>
+      </div>
     );
   }
 
@@ -44,7 +56,7 @@ export default function NewsletterSignup({ compact }) {
       <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
         <input placeholder="Full name (optional)" value={name} onChange={e => setName(e.target.value)} style={{ padding: '.5rem' }} />
         <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} required style={{ padding: '.5rem' }} />
-        <button type="submit" disabled={loading} style={{ padding: '.5rem', background: '#0070f3', color: '#fff', border: 'none' }}>{loading ? 'Subscribing...' : 'Subscribe'}</button>
+        <button type="submit" disabled={loading || subscribed} style={{ padding: '.5rem', background: '#00af66', color: '#fff', border: 'none' }}>{loading ? 'Subscribing...' : (subscribed ? 'Subscribed' : 'Subscribe')}</button>
       </form>
       {msg && <div style={{ marginTop: '.5rem' }}>{msg}</div>}
     </div>

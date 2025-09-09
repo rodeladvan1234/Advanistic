@@ -1,10 +1,14 @@
 {
-  "/_error": "pages/_error.js",
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/courses": "pages/courses.js",
-  "/": "pages/index.js",
+  "/_error": "pages/_error.js",
   "/about": "pages/about.js",
+  "/": "pages/index.js",
+  "/blog": "pages/blog.js",
+  "/store": "pages/store.js",
   "/services": "pages/services.js",
-  "/releases": "pages/releases.js"
+  "/releases": "pages/releases.js",
+  "/admin": "pages/admin.js",
+  "/releases/[id]": "pages/releases/[id].js",
+  "/admin/products": "pages/admin/products.js"
 }

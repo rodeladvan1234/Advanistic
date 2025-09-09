@@ -32,20 +32,40 @@
       "static/chunks/main.js",
       "static/chunks/pages/about.js"
     ],
-    "/courses": [
+    "/admin": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/courses.js"
+      "static/chunks/pages/admin.js"
+    ],
+    "/admin/products": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/admin/products.js"
+    ],
+    "/blog": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/blog.js"
     ],
     "/releases": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/releases.js"
     ],
+    "/releases/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/releases/[id].js"
+    ],
     "/services": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/services.js"
+    ],
+    "/store": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/store.js"
     ]
   },
   "ampFirstPages": []

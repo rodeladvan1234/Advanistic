@@ -28,8 +28,9 @@ export default function Login() {
       });
       const data = await res.json();
       if (res.ok && data.success) {
-        // Redirect to dashboard or set auth state
-        window.location.href = "/dashboard";
+  // Set login flag for Navbar and redirect
+  localStorage.setItem('advanistic_logged_in', 'true');
+  window.location.href = "/dashboard";
       } else {
         setError(data.message || "Invalid credentials");
       }
@@ -60,16 +61,16 @@ export default function Login() {
           required
           style={{ padding: "0.75rem", fontSize: "1rem", borderRadius: 4, border: "1px solid #ccc" }}
         />
-        <button type="submit" disabled={loading} style={{ padding: "0.75rem", fontSize: "1rem", borderRadius: 4, background: "#0070f3", color: "#fff", border: "none" }}>
+        <button type="submit" disabled={loading} style={{ padding: "0.75rem", fontSize: "1rem", borderRadius: 4, background: "#00af66", color: "#fff", border: "none" }}>
           {loading ? "Logging in..." : "Login"}
         </button>
         {error && <div style={{ color: "red", marginTop: "0.5rem" }}>{error}</div>}
       </form>
       <div style={{ display: 'flex', gap: '.5rem', marginTop: '1rem' }}>
-        <button onClick={() => (window.location.href = "/register")} style={{ flex: 1, padding: "0.75rem", fontSize: "1rem", borderRadius: 4, background: "#34a853", color: "#fff", border: "none" }}>
+        <button onClick={() => (window.location.href = "/register")} style={{ flex: 1, padding: "0.75rem", fontSize: "1rem", borderRadius: 4, background: "#000000", color: "#fff", border: "none" }}>
           Register
         </button>
-        <button onClick={() => (window.location.href = `${API_BASE}/auth/google`)} style={{ flex: 1, padding: "0.75rem", fontSize: "1rem", borderRadius: 4, background: "#4285F4", color: "#fff", border: "none" }}>
+        <button onClick={() => (window.location.href = `${API_BASE}/auth/google`)} style={{ flex: 1, padding: "0.75rem", fontSize: "1rem", borderRadius: 4, background: "#000000", color: "#fff", border: "none" }}>
           Continue with Google
         </button>
       </div>

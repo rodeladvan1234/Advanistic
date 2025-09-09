@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import NewsletterSignup from '../../components/NewsletterSignup';
 
 export default function Store() {
   const [products, setProducts] = useState([]);
@@ -24,6 +25,11 @@ export default function Store() {
           </div>
         ))}
       </div>
+            {/* Newsletter signup */}
+      <div style={{ marginTop: '2rem', maxWidth: 600 }}>
+        <NewsletterSignup />
+      </div>
     </div>
+    
   );
 }

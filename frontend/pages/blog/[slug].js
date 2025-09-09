@@ -16,6 +16,13 @@ export default function PostDetail() {
   return (
     <div className="container" style={{ padding: '2rem 0' }}>
       <h2>{post.title}</h2>
+      {post.thumbnail_url && (
+        <img
+          src={post.thumbnail_url.startsWith('http') ? post.thumbnail_url : `/images/${post.thumbnail_url}`}
+          alt={post.title}
+          className="detail-thumbnail"
+        />
+      )}
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
     </div>
   );

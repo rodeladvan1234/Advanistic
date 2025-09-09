@@ -51,7 +51,8 @@ CREATE TABLE IF NOT EXISTS testimonials (
 CREATE TABLE IF NOT EXISTS services (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
-    description TEXT,
+  description TEXT,
+  thumbnail_url TEXT,
     base_price DECIMAL(10,2),
     category VARCHAR(50), -- design, dev, consulting
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -173,18 +174,19 @@ CREATE TABLE IF NOT EXISTS coupons (
 );
 
 -- Marketing / CRM leads (newsletter segmentation)
-CREATE TABLE IF NOT EXISTS leads (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(150) UNIQUE NOT NULL,
-    segment VARCHAR(50), -- fan, client, student
-    source VARCHAR(50), -- newsletter, campaign, freebie
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Newsletter subscribers table (store local subscribers and link to users when possible)
-CREATE TABLE IF NOT EXISTS newsletter_subscribers (
+CREATE TABLE IF NOT EXISTS releases (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NULL,
+  title VARCHAR(200) NOT NULL,
+  release_date DATE,
+  cover_url TEXT,
+  thumbnail_url TEXT,
+  description TEXT,
+  spotify_url TEXT,
+  apple_url TEXT,
+  youtube_url TEXT,
+  category VARCHAR(50),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
   email VARCHAR(150) NOT NULL,
   name VARCHAR(200) NULL,
   source VARCHAR(100) NULL,
@@ -198,11 +200,13 @@ CREATE TABLE IF NOT EXISTS releases (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(200) NOT NULL,
     release_date DATE,
-    cover_url TEXT,
+  cover_url TEXT,
+  thumbnail_url TEXT,
     description TEXT,
     spotify_url TEXT,
     apple_url TEXT,
     youtube_url TEXT,
+    category VARCHAR(50), -- vt, rodel_releases, collabs
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -225,7 +229,8 @@ CREATE TABLE IF NOT EXISTS posts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(200) NOT NULL,
     slug VARCHAR(200) UNIQUE NOT NULL,
-    content TEXT,
+  content TEXT,
+  thumbnail_url TEXT,
     author_id INT,
     category VARCHAR(50),
     tags TEXT,
